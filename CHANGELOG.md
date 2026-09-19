@@ -1,9 +1,10 @@
-# Changelog
+# 0.1.0
+## 2026-09-19
 
-## Unreleased
-
-- Completed standalone Composer metadata and package autoloading.
-- Added CI checks and focused tests for metadata, descriptions, canonical URLs
-  and sitemap rendering.
-- Documented installation, configuration, clean-install verification and
-  release steps.
+1. [](#new)
+   * Initial public release of Void Metadata for Grav 2.
+   * Shared metadata policy for titles, descriptions and robots directives.
+   * Canonical URL helpers, including Grav pagination routes.
+   * Sitemap collection and XML rendering with URL normalization and optional
+     `virtual-collections` integration.
+   * Composer metadata, focused contract tests and continuous integration.

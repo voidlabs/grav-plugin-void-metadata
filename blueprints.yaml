@@ -1,10 +1,15 @@
 name: Void Metadata
 slug: void-metadata
 type: plugin
-version: 1.0.0
+version: 0.1.0
 description: Gestisce description, canonical, sitemap e content type comuni dei siti Void.
 icon: tags
-author: { name: Void Labs }
+author:
+  name: Void Labs
+  url: https://github.com/voidlabs
+homepage: https://github.com/voidlabs/grav-plugin-void-metadata
+bugs: https://github.com/voidlabs/grav-plugin-void-metadata/issues
+keywords: metadata, canonical, sitemap, grav, plugin
 license: MIT
 compatibility: { grav: ['2.0'] }
 form:
