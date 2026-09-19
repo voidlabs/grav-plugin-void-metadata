@@ -1,0 +1,6 @@
+enabled: false
+description_limit: 160
+content_types:
+  sitemap: 'application/xml; charset=utf-8'
+  feed: 'application/rss+xml; charset=utf-8'
+sitemap_excluded_templates: [sitemap, feed, error, search]

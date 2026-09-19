@@ -1,0 +1,47 @@
+{
+    "name": "voidlabs/grav-plugin-void-metadata",
+    "type": "grav-plugin",
+    "description": "Shared metadata, canonical URL and sitemap helpers for Grav CMS",
+    "keywords": ["grav", "plugin", "metadata", "canonical", "sitemap"],
+    "homepage": "https://github.com/voidlabs/grav-plugin-void-metadata",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Void Labs",
+            "homepage": "https://github.com/voidlabs"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/voidlabs/grav-plugin-void-metadata/issues"
+    },
+    "require": {
+        "php": "^8.3"
+    },
+    "suggest": {
+        "getgrav/grav": "Required at runtime (Grav 2.0 or newer)."
+    },
+    "autoload": {
+        "psr-4": {
+            "VoidLabs\\Metadata\\": "src/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "@php -l void-metadata.php",
+            "@php -l src/MetadataPolicy.php",
+            "@php -l src/SitemapRenderer.php",
+            "@php -l tests/run.php",
+            "@php -l tests/plugin-run.php",
+            "@php -l tests/clean-grav.php"
+        ],
+        "test": "@php tests/run.php && @php tests/plugin-run.php",
+        "check": [
+            "@lint",
+            "@test"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,18 @@
+name: Void Metadata
+slug: void-metadata
+type: plugin
+version: 1.0.0
+description: Gestisce description, canonical, sitemap e content type comuni dei siti Void.
+icon: tags
+author: { name: Void Labs }
+license: MIT
+compatibility: { grav: ['2.0'] }
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Stato plugin
+      default: 0
+      options: { 1: Abilitato, 0: Disabilitato }
+      validate: { type: bool }
