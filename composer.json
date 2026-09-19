@@ -34,7 +34,10 @@
             "@php -l tests/plugin-run.php",
             "@php -l tests/clean-grav.php"
         ],
-        "test": "@php tests/run.php && @php tests/plugin-run.php",
+        "test": [
+            "@php tests/run.php",
+            "@php tests/plugin-run.php"
+        ],
         "check": [
             "@lint",
             "@test"
