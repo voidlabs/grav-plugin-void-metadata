@@ -95,3 +95,14 @@ specifiche dei siti.
 ## Licenza
 
 MIT. Vedere [LICENSE](LICENSE).
+
+## Sitemap ufficiale e llms.txt
+
+Con Sitemap ufficiale 5.3+ abilitato, `official_sitemap: true` (default) collega
+la selezione di void-metadata a XML e llms.txt tramite `onSitemapProcessed`.
+Le route virtuali ricevono link Markdown; le pagine fisiche scartate da Sitemap
+per protezione, redirect o sitemap.ignore restano escluse. Non vengono aggiunti
+changefreq o priority; lastmod segue la policy ordinaria di void-metadata.
+Non richiede Sitemap quando il plugin ufficiale non e' installato.
+Impostare `official_sitemap: false` per lasciare a Sitemap la propria selezione.
+Le esclusioni e le mappe rimangono configurazione del sito, non del pacchetto.

@@ -9,6 +9,7 @@ use Grav\Common\Plugins;
 
 require_once __DIR__ . '/src/MetadataPolicy.php';
 require_once __DIR__ . '/src/SitemapRenderer.php';
+require_once __DIR__ . '/src/SitemapIntegration.php';
 
 final class VoidMetadataPlugin extends Plugin
 {
@@ -17,7 +18,26 @@ final class VoidMetadataPlugin extends Plugin
         return [
             'onTwigInitialized' => ['onTwigInitialized', 0],
             'onPageHeaders' => ['onPageHeaders', 0],
+            'onSitemapProcessed' => ['onSitemapProcessed', 0],
         ];
+    }
+
+    /** Use the official Sitemap renderer without losing local/virtual selections. */
+    public function onSitemapProcessed($event): void
+    {
+        if (!$this->config->get('plugins.void-metadata.official_sitemap', true)) return;
+        $physical = [];
+        foreach ($this->grav['pages']->all() as $page) {
+            if ($page->routable()) $physical[rawurldecode((string) $page->route())] = true;
+        }
+        $language = $this->grav['language'];
+        $event['sitemap'] = \VoidLabs\Metadata\SitemapIntegration::entries(
+            $this->sitemapEntries(),
+            (array) $event['sitemap'],
+            (string) $this->grav['uri']->rootUrl(true),
+            $language->enabled() ? (string) $language->getLanguage() : null,
+            $physical,
+        );
     }
 
     public function onTwigInitialized(): void
