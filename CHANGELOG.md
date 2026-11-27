@@ -1,3 +1,14 @@
+# v0.3.0
+## 11/27/2026
+
+- Remove the obsolete proprietary XML renderer: sitemapXml() and
+  SitemapRenderer::render() are no longer available. Use the official Sitemap
+  plugin through the existing onSitemapProcessed integration.
+- Keep URL normalization, public selection, virtual routes and metadata policy
+  unchanged; metadata-only installations still do not require Sitemap.
+- Document the API removal and replace legacy renderer tests with the existing
+  normalization and official Sitemap integration coverage.
+
 # v0.2.0
 ## 11/09/2026
 

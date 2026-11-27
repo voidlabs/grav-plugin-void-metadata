@@ -164,12 +164,6 @@ final class VoidMetadataPlugin extends Plugin
         return array_values($entries);
     }
 
-    /** @param list<array{url?:string,route?:string,modified?:int}> $entries */
-    public function sitemapXml(string $baseUrl, array $entries): string
-    {
-        return \VoidLabs\Metadata\SitemapRenderer::render($baseUrl, $entries);
-    }
-
     public function onPageHeaders($event): void
     {
         $page = $this->grav['page'];

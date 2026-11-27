@@ -41,14 +41,6 @@ check_metadata(SitemapRenderer::normalizeUrl('https://example.test', 'https://ev
 check_metadata(SitemapRenderer::normalizeUrl('https://example.test', '/foo?x=1') === null, 'Query accettata nella sitemap.');
 check_metadata(SitemapRenderer::normalizeUrl('https://example.test', '/foo#fragment') === null, 'Fragment accettato nella sitemap.');
 check_metadata(SitemapRenderer::normalizeUrl('https://example.test', '/a/../b') === null, 'Dot segment accettato.');
-$xml = SitemapRenderer::render('https://example.test', [
-    ['url' => '/a&b', 'modified' => '2025-01-02'],
-    ['url' => '/a&b', 'modified' => '2025-01-03'],
-    ['url' => '/bad?query=1', 'modified' => '2025-01-04'],
-]);
-check_metadata(substr_count($xml, '<loc>https://example.test/a%26b</loc>') === 1, 'Entry duplicate o XML non escaped correttamente.');
-check_metadata(str_contains($xml, '<lastmod>2025-01-03</lastmod>'), 'Last modification non massima.');
-check_metadata(simplexml_load_string($xml) !== false, 'Sitemap XML non valido.');
 
 if ($failures !== []) {
     foreach ($failures as $failure) {

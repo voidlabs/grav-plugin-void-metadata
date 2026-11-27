@@ -6,28 +6,6 @@ namespace VoidLabs\Metadata;
 
 final class SitemapRenderer
 {
-    /** @param list<array{url?:string,route?:string,modified?:int|string|\DateTimeInterface}> $entries */
-    public static function render(string $baseUrl, array $entries): string
-    {
-        $urls = [];
-        foreach ($entries as $entry) {
-            $url = self::normalizeUrl($baseUrl, $entry['url'] ?? $entry['route'] ?? '');
-            if ($url === null) continue;
-            $modified = self::timestamp($entry['modified'] ?? 0);
-            $urls[$url] = max($urls[$url] ?? 0, $modified);
-        }
-        ksort($urls, SORT_STRING);
-
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
-        foreach ($urls as $url => $modified) {
-            $xml .= '  <url><loc>' . self::xml($url) . '</loc>';
-            if ($modified > 0) $xml .= '<lastmod>' . gmdate('Y-m-d', $modified) . '</lastmod>';
-            $xml .= "</url>\n";
-        }
-        return $xml . "</urlset>\n";
-    }
-
     public static function normalizeUrl(string $baseUrl, mixed $value): ?string
     {
         if (!is_string($value) || $value === '') return null;
@@ -76,19 +54,4 @@ final class SitemapRenderer
         return false;
     }
 
-    private static function timestamp(mixed $value): int
-    {
-        if ($value instanceof \DateTimeInterface) return max(0, $value->getTimestamp());
-        if (is_int($value) || is_float($value)) return max(0, (int) $value);
-        if (is_string($value) && trim($value) !== '') {
-            $timestamp = strtotime($value);
-            return $timestamp === false ? 0 : max(0, $timestamp);
-        }
-        return 0;
-    }
-
-    private static function xml(string $value): string
-    {
-        return htmlspecialchars($value, ENT_XML1 | ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-    }
 }

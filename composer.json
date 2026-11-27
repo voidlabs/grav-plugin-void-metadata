@@ -24,7 +24,8 @@
         "php": "^8.3"
     },
     "suggest": {
-        "getgrav/grav": "Required at runtime (Grav 2.0 or newer)."
+        "getgrav/grav": "Required at runtime (Grav 2.0 or newer).",
+        "getgrav/grav-plugin-sitemap": "Required to publish sitemap XML and llms.txt."
     },
     "autoload": {
         "psr-4": {

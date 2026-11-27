@@ -14,7 +14,15 @@ Mantiene separata la policy SEO comune dalla configurazione specifica del sito.
   template e route noindex e integra opzionalmente `virtual-collections`.
 - `SitemapRenderer`: accetta soltanto URL HTTP(S) dello stesso origin o route
   locali senza query e fragment; normalizza encoding e trailing slash,
-  deduplica le entry e produce XML valido.
+  ed esclude URL non locali. Il rendering XML e llms.txt appartiene al plugin
+  Sitemap ufficiale; `SitemapRenderer` conserva soltanto la normalizzazione URL.
+
+## Migrazione da 0.2
+
+La versione 0.3 rimuove `VoidMetadataPlugin::sitemapXml()` e
+`SitemapRenderer::render()`. Per pubblicare XML e llms.txt usare Sitemap ufficiale
+con `official_sitemap: true`. Rimuovere gli eventuali vecchi template XML del
+tema; selezione, normalizzazione URL e policy dei metadati restano invariate.
 
 ## Requisiti
 
